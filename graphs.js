@@ -1,26 +1,58 @@
 Graph DSA
-    2 // Depth first uses a stack, breadth first uses a queue
-    3
->>  4 const depthFirst = ( graph, source ) => {
->>  5   const stack = [ source ]
-    6
-    7   while (stack.length > 0) {
->>  8     const current = stack.pop()
-    9
->> 10     for (let neighbor in graph[current]) {
->> 11       stack.push(neighbor)
-   12     }
-   13   }
->> 14 }
-   15
->> 16 const graph = {
-   17   a: ['c, b'],
-   18   b: ['d'],
-   19   c: ['e'],
-   20   d: ['f'],
-   21   e: [],
-   22   f: []
->> 23 }
-   24
->> 25 depthFirst(graph, 'a') // abdfce
+     // Depth first uses a stack, breadth first uses a queue
 
+   const depthFirst = ( graph, source ) => {
+       const stack = [ source ]
+
+       while (stack.length > 0) {
+       const current = stack.pop()
+
+      for (let neighbor in graph[current]) {
+        stack.push(neighbor)
+        }
+      }
+  }
+
+ const graph = {
+      a: ['c, b'],
+      b: ['d'],
+      c: ['e'],
+      d: ['f'],
+      e: [],
+      f: []
+  }
+
+ depthFirst(graph, 'a') // abdfce
+
+// Recursive depthFirst
+//
+
+const depthFirst = ( graph, source ) => {
+  for (let neighbor in graph[source]) {
+    depthFirst(graph, neighbor)
+  }
+}
+
+// Breadth first
+const breadthFirst = (graph, source) => {
+  const queue = [ source ]
+  // add to one end, remove from other end
+  while (queue.length > 0) {
+    const current = queue.shift()
+    for (let neighbor of graph[current]) {
+      queue.push(neighbor)
+    }
+  }
+}
+
+
+ const graph = {
+      a: ['c, b'],
+      b: ['d'],
+      c: ['e'],
+      d: ['f'],
+      e: [],
+      f: []
+  }
+
+ breadthFirst(graph, 'a') // acbedf
