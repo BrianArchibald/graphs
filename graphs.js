@@ -105,3 +105,25 @@ const hasPath = (graph, src, dst) => {
   }
   return false
 }
+
+//  When dealing with edgeless graph its best to convert to adjency list
+//  edgeless is undirected (can go both ways)
+//
+edges = [
+  [i, j],
+  [k, i],
+  [m, k],
+  [k, l],
+  [o, j]
+]
+
+// make sure when populate one node and its neighbors you add the inverse too
+//
+graph = {
+  i: [j, k],
+  j: [i, o],
+  k: [i, m, l],
+  m: [k],
+  l: [k],
+  o: [j],
+}
