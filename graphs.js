@@ -127,3 +127,27 @@ graph = {
   l: [k],
   o: [j],
 }
+// make sure the graph is no cyclical, if it is you need to check off ones your have visited
+//
+
+
+// helper function to make the adjency object
+const buildGraph = (edges) => {
+  for (let edge in edges) {
+    const [a , b] = edge
+    if (!(a in graph)) graph[a] = []
+    if (!(b in graph)) graph[b] = []
+    graph[a].push(b)
+    graph[b].push(a)
+  }
+}
+
+const edges = [
+  [i, j],
+  [k, i],
+  [m, k],
+  [k, l],
+  [o, n]
+]
+
+undirectedPath(edges, j, m)
