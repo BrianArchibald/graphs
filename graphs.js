@@ -66,11 +66,11 @@ has path problem
 // DFS solution
 
 // src is current position in traversal
-const hasPath = (graph, src, dst) => {
+const haspath = (graph, src, dst) => {
   if (src == dst) return true
 
   for (let neighbor of graph[src]) {
-    if (hasPath(graph, neighbor, dst)) == true {
+    if (haspath(graph, neighbor, dst)) == true {
       return true
     }
   }
@@ -130,9 +130,30 @@ graph = {
 // make sure the graph is no cyclical, if it is you need to check off ones your have visited
 //
 
+const undirectedPath(edges, src, dst) => {
+  const graph buildGraph(edges)
+  return hasPath(graph, src, dst, new Set())
+
+  }
+
+const hasPath = (graph, src, dst, visited) =. {
+  if (src == dst) return true
+  if (visited.has(src)) return false
+
+  visited.add(src)
+
+  for (let neighbor of graph[src]) {
+    if (hasPath(graph, neighbor, dst, visited) == true) return true
+  }
+  return false
+}
+
+
 
 // helper function to make the adjency object
 const buildGraph = (edges) => {
+  const graph = {}
+
   for (let edge in edges) {
     const [a , b] = edge
     if (!(a in graph)) graph[a] = []
@@ -140,8 +161,11 @@ const buildGraph = (edges) => {
     graph[a].push(b)
     graph[b].push(a)
   }
+  return graph
 }
 
+//
+//
 const edges = [
   [i, j],
   [k, i],
