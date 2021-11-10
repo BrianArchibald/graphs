@@ -175,3 +175,32 @@ const edges = [
 ]
 
 undirectedPath(edges, j, m)
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+//
+How many connected components
+
+const connectedComponentsCount = (graph) => {
+  const visited = new Set()
+  let count = 0
+
+  for (let node in graph) {
+    if (explore(graph, node, visited) == true) {
+      count += 1
+    }
+  }
+  return count
+}
+
+const explore = (graph, current, visited) => {
+  // need String here as js sets store keys and strings then vals are nums
+  if (visited.has(String(current))) return false
+  visited.add(String(current))
+
+  for (let neighbor of graph[current]) {
+    explore(graph, neighbor, visited)
+  }
+
+  // when explore is done with all neighbors it returns here
+  return true
+}
